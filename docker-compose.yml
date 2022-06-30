@@ -17,6 +17,8 @@ services:
       restart: always
       command: >
         sh -c "python manage.py collectstatic --noinput 
+        && python manage.py makemigrations
+        && python manage.py migrate
         && uwsgi --ini mysite.uwsgi.ini"
       volumes:
         - uwsgi_data:/tmp/uwsgi/
